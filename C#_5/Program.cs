@@ -17,7 +17,7 @@ namespace C__5
 
         public Student () : this (10, 11, 11)
         {
-            Console.WriteLine("C-tor without params");
+            //Console.WriteLine("C-tor without params");
         }
 
        public Student(Int32? test, Int32? term, Int32? exam): this ("Иван", "Иванович", "Иванов", "12.01.2003", "г.Одесса ул.Пушкинская 10", "069635422", 12, 12, 12)
@@ -29,7 +29,7 @@ namespace C__5
             Exams = new List<Int32?>();
             SetExams(exam);
 
-            Console.WriteLine("C-tor with params");
+            //Console.WriteLine("C-tor with params");
         }
 
         public Student(string? firstname, string? secondname, string? lastname, string? birthday, string? address, string? phone, Int32? test, Int32? term, Int32? exam)//main c-tor
@@ -47,7 +47,7 @@ namespace C__5
             Exams = new List<Int32?>();
             SetExams(exam);
 
-            Console.WriteLine("Main c-tor");
+            //Console.WriteLine("Main c-tor");
         }
 
         public void SetFirstname (string? firstname)
@@ -140,7 +140,7 @@ namespace C__5
             return Exams;
         }
 
-        public void Print ()
+        public void Print()
         {
             Console.WriteLine("Имя: " + GetFirstname());
             Console.WriteLine("Отчество: " + GetSecondname());
@@ -148,21 +148,21 @@ namespace C__5
             Console.WriteLine("Дата рождения: " + GetBirthday());
             Console.WriteLine("Адрес проживания: " + GetAddress());
             Console.WriteLine("Телефон: " + GetPhone());
-            Tests.ForEach(delegate (Int32? test)
+            foreach (Int32? test in Tests)
             {
                 Console.WriteLine("Оценки за зачеты: " + test);
-            });
-            TermPapers.ForEach(delegate (Int32? term)
+            }
+            foreach (Int32? term in TermPapers)
             {
-                Console.WriteLine("Оценки за курсовые работы: " + term);
-            });
-            Exams.ForEach(delegate (Int32? exam)
+                Console.WriteLine("Оценки за зачеты: " + term);
+            }
+            foreach (Int32? exam in Exams)
             {
-                Console.WriteLine("Оценки за экзамены: " + exam);
-            });
+                Console.WriteLine("Оценки за зачеты: " + exam);
+            }
             Console.WriteLine();
         }
-        static void Main(string[] args)
+            static void Main(string[] args)
         {
             Student s = new ();
             s.Print();
