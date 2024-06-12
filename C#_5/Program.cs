@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace C__5
@@ -34,8 +34,8 @@ namespace C__5
 
         public Student(string? firstname, string? secondname, string? lastname, string? birthday, string? address, string? phone, Int32? test, Int32? term, Int32? exam)//main c-tor
         {
-            SetName(firstname);
-            SetName(secondname);
+            SetFirstname(firstname);
+            SetSecondname(secondname);
             SetLastname(lastname);
             SetBirthday(birthday);
             SetAddress(address);
@@ -50,9 +50,9 @@ namespace C__5
             Console.WriteLine("Main c-tor");
         }
 
-        public void SetName (string? name)
+        public void SetFirstname (string? firstname)
         {
-            this.firstname = name;
+            this.firstname = firstname;
         }
 
         public void SetSecondname (string? secondname) 
@@ -97,32 +97,32 @@ namespace C__5
 
         public string? GetFirstname()
         {
-            return firstname;
+            return firstname != null ? firstname : "Не задано";
         }
 
         public string? GetSecondname()
         {
-            return secondname;
+            return secondname != null ? secondname : "Не задано";
         }
 
         public string? GetLastname()
         {
-            return lastname;
+            return lastname != null ? lastname : "Не задано";
         }
 
         public string? GetBirthday()
         {
-            return birthday;
+            return birthday != null ? birthday : "Не задано";
         }
 
         public string? GetAddress()
         {
-            return address;
+            return address != null ? address : "Не задано";
         }
 
         public string? GetPhone()
         {
-            return phone;
+            return phone != null ? phone : "Не задано";
         }
 
         public List<Int32?> GetTests()
@@ -142,22 +142,34 @@ namespace C__5
 
         public void Print ()
         {
-            GetFirstname();
-            GetSecondname();
-            GetLastname();
-            GetBirthday();
-            GetAddress();
-            GetPhone();
-            GetTests();
-            GetTermPapers();
-            GetExams();
+            Console.WriteLine("Имя: " + GetFirstname());
+            Console.WriteLine("Отчество: " + GetSecondname());
+            Console.WriteLine("Фамилия: " + GetLastname());
+            Console.WriteLine("Дата рождения: " + GetBirthday());
+            Console.WriteLine("Адрес проживания: " + GetAddress());
+            Console.WriteLine("Телефон: " + GetPhone());
+            Tests.ForEach(delegate (Int32? test)
+            {
+                Console.WriteLine("Оценки за зачеты: " + test);
+            });
+            TermPapers.ForEach(delegate (Int32? term)
+            {
+                Console.WriteLine("Оценки за курсовые работы: " + term);
+            });
+            Exams.ForEach(delegate (Int32? exam)
+            {
+                Console.WriteLine("Оценки за экзамены: " + exam);
+            });
+            Console.WriteLine();
         }
         static void Main(string[] args)
         {
             Student s = new ();
             s.Print();
-            //Student s2 = new Student();
-            //Console.WriteLine("Hello, World!");"Василий", "Васильевич", "Пупкин", "01.01.1999", "г. Киев", "32536654"
+            Student s2 = new Student(9,9,9);
+            s2.Print();
+            Student s3 = new Student("Василий", "Васильевич", "Пупкин", "01.01.1999", "г. Киев", "32536654", 12,12,12);
+            s3.Print();
         }
     }
 }
